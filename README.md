@@ -13,7 +13,7 @@ S2AN is based on a [similar tool](https://github.com/Neo23x0/sigma/blob/master/t
 
 You are free to review the source code we make available in this repository. 
 
-The pre-compiled binaries are available for download and you can reference them in your pipeline *(or download for manual execution)* as they will always point towards the lastest version:
+The pre-compiled binaries are available for download and you can reference them in your pipeline *(or download for manual execution)* as they will always point towards the latest version:
 
 * GNU/Linux: https://d12qunpqqrncnn.cloudfront.net/linux/Sigma2AttackNet 
 * Windows: https://d12qunpqqrncnn.cloudfront.net/windows/Sigma2AttackNet.exe
@@ -24,7 +24,7 @@ The pre-compiled binaries are available for download and you can reference them 
 
 # Considerations
 
-S2AN does not attempt to parse or validate the YAML files. We extract the tags that are relevant for the mapping and create our JSON layer solely based on that.
+S2AN does not attempt to parse or validate the YAML files. We extract the tags that are relevant for the mapping from the rule file and create our JSON layer solely based on that.
 
 # Example Layer
 
