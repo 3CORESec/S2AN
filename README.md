@@ -13,7 +13,7 @@ S2AN is based on a [similar tool](https://github.com/Neo23x0/sigma/blob/master/t
 
 You are free to review the source code we make available in this repository. The pre-compiled binaries are available for download.
 
-You are free to use the following URLs to include in your pipeline as they will always point towards the lastest version (x64):
+Use the following URLs to include in your pipeline *(or download for manual execution)* as they will always point towards the lastest version (x64):
 
 * GNU/Linux: https://d12qunpqqrncnn.cloudfront.net/linux/Sigma2AttackNet 
 * Windows: https://d12qunpqqrncnn.cloudfront.net/windows/Sigma2AttackNet.exe
@@ -28,4 +28,4 @@ S2AN does not attempt to parse or validate the YAML files. We extract the tags t
 
 # Example Layer
 
-[Visit this URL](https://mitre-attack.github.io/attack-navigator/enterprise/#layerURL=https%3A%2F%2Fraw.githubusercontent.com%2F3CORESec%2FS2AN%2Fmaster%2Fexample-layer%2Fsigma-coverage.json) for an example visualization using ATT&CK Navigator of a layer created by S2AN against the public Sigma rules *(at 02-05-2020)*
+[Visit this URL](https://mitre-attack.github.io/attack-navigator/enterprise/#layerURL=https%3A%2F%2Fraw.githubusercontent.com%2F3CORESec%2FS2AN%2Fmaster%2Fexample-layer%2Fsigma-coverage.json) for an example visualization using ATT&CK Navigator of a layer created by S2AN against the public Sigma rules *(as of 02-05-2020)*
