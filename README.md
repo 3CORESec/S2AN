@@ -28,4 +28,4 @@ S2AN does not attempt to parse or validate the YAML files. We extract the tags t
 
 # Example Layer
 
-[Visit this URL](https://mitre-attack.github.io/attack-navigator/enterprise/#layerURL=https%3A%2F%2Fraw.githubusercontent.com%2F3CORESec%2FS2AN%2Fmaster%2Fexample-layer%2Fsigma-coverage.json) for an example visualization using ATT&CK Navigator of a layer created by S2AN against the public Sigma rules *(as of 02-05-2020)*
+[Visit this URL](https://mitre-attack.github.io/attack-navigator/enterprise/#layerURL=https%3A%2F%2Fraw.githubusercontent.com%2F3CORESec%2FS2AN%2Fmaster%2Fexample-layer%2Fsigma-coverage.json) for an example visualization using ATT&CK Navigator of a layer created by S2AN against the public Sigma rules *(as of 02-05-2020)*.
