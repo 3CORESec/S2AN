@@ -1,0 +1,680 @@
+{
+  "domain": "mitre-enterprise",
+  "name": "Sigma rules coverage",
+  "gradient": {
+    "colors": [
+      "#a0eab5",
+      "#0f480f"
+    ],
+    "maxValue": 133,
+    "minValue": 0
+  },
+  "version": "2.2",
+  "techniques": [
+    {
+      "techniqueID": "T1089",
+      "score": 12,
+      "comment": "aws_config_disable_recording.yml\naws_guardduty_disruption.yml\naws_cloudtrail_disable_logging.yml\nsysmon_invoke_phantom.yml\nsysmon_susp_service_installed.yml\nsysmon_susp_procexplorer_driver_created_in_tmp_folder.yml\nsysmon_disable_security_events_logging_adding_reg_key_minint.yml\nwin_defender_bypass.yml\nwin_user_driver_loaded.yml\nwin_susp_msmpeng_crash.yml\nwin_alert_enable_weak_encryption.yml\ncisco_cli_disable_logging.yml"
+    },
+    {
+      "techniqueID": "T1098",
+      "score": 5,
+      "comment": "aws_iam_backdoor_users_keys.yml\nwin_susp_dsrm_password_change.yml\nwin_alert_ad_user_backdoors.yml\nwin_apt_judgement_panda_gtr19.yml\ncisco_cli_local_accounts.yml"
+    },
+    {
+      "techniqueID": "T1078",
+      "score": 7,
+      "comment": "aws_root_account_usage.yml\nwin_susp_failed_logons_single_source.yml\nwin_admin_rdp_login.yml\nwin_user_added_to_local_administrators.yml\nwin_alert_active_directory_user_control.yml\nwin_susp_failed_logon_reasons.yml\nwin_susp_interactive_logons.yml"
+    },
+    {
+      "techniqueID": "T1020",
+      "score": 5,
+      "comment": "aws_ec2_download_userdata.yml\naws_rds_public_db_restore.yml\naws_rds_change_master_password.yml\nwin_susp_compression_params.yml\nwin_exfiltration_and_tunneling_tools_execution.yml"
+    },
+    {
+      "techniqueID": "T1064",
+      "score": 11,
+      "comment": "aws_ec2_startup_script_change.yml\nsysmon_susp_file_characteristics.yml\nsysmon_cactustorch.yml\nwin_shell_spawn_susp_program.yml\nwin_susp_rasdial_activity.yml\nwin_wmi_spwns_powershell.yml\nwin_task_folder_evasion.yml\nwin_malware_script_dropper.yml\nwin_apt_cloudhopper.yml\nwin_susp_script_execution.yml\nwin_mal_adwind.yml"
+    },
+    {
+      "techniqueID": "T1059",
+      "score": 14,
+      "comment": "lnx_apt_equationgroup_lnx.yml\nwin_alert_ruler.yml\nwin_hwp_exploits.yml\nwin_apt_babyshark.yml\nwin_apt_equationgroup_dll_u_load.yml\nwin_apt_sofacy.yml\nwin_susp_cmd_http_appdata.yml\nwin_apt_zxshell.yml\nwin_task_folder_evasion.yml\nwin_apt_turla_commands.yml\nwin_crime_fireball.yml\nwin_office_spawn_exe_from_users_directory.yml\nwin_susp_outlook.yml\nwin_office_shell.yml"
+    },
+    {
+      "techniqueID": "T1485",
+      "score": 1,
+      "comment": "lnx_dd_delete_file.yml"
+    },
+    {
+      "techniqueID": "T1068",
+      "score": 5,
+      "comment": "lnx_shell_priv_esc_prep.yml\nlnx_sudo_cve_2019_14287.yml\nwin_kernel_and_3rd_party_drivers_exploits_token_stealing.yml\nwin_apt_hurricane_panda.yml\nwin_exploit_cve_2019_1388.yml"
+    },
+    {
+      "techniqueID": "T1501",
+      "score": 1,
+      "comment": "lnx_pers_systemd_reload.yml"
+    },
+    {
+      "techniqueID": "T1222",
+      "score": 4,
+      "comment": "lnx_file_or_folder_permissions.yml\nlnx_chattr_immutable_removal.yml\nwin_ad_object_writedac_access.yml\nwin_file_permission_modifications.yml"
+    },
+    {
+      "techniqueID": "T1169",
+      "score": 1,
+      "comment": "lnx_sudo_cve_2019_14287.yml"
+    },
+    {
+      "techniqueID": "T1146",
+      "score": 3,
+      "comment": "lnx_shell_clear_cmd_history.yml\npowershell_clear_powershell_history.yml\ncisco_cli_clear_logs.yml"
+    },
+    {
+      "techniqueID": "T1110",
+      "score": 1,
+      "comment": "generic_brute_force.yml"
+    },
+    {
+      "techniqueID": "T1190",
+      "score": 5,
+      "comment": "web_cve_2020_0688_msexchange.yml\nweb_cve_2018_2894_weblogic_exploit.yml\nwin_rdp_potential_cve-2019-0708.yml\nwin_vul_cve_2020_0688.yml\nwin_exploit_cve_2020_10189.yml"
+    },
+    {
+      "techniqueID": "T1210",
+      "score": 4,
+      "comment": "web_exchange_cve_2020_0688_exploit.yml\nsysmon_susp_rdp.yml\nwin_rdp_potential_cve-2019-0708.yml\nwin_rdp_bluekeep_poc_scanner.yml"
+    },
+    {
+      "techniqueID": "T1100",
+      "score": 9,
+      "comment": "web_cve_2018_2894_weblogic_exploit.yml\nlnx_auditd_web_rce.yml\nsysmon_webshell_creation_detect.yml\nav_webshell.yml\nwin_webshell_spawn.yml\nwin_webshell_detection.yml\nwin_susp_execution_path_webserver.yml\nwin_susp_iss_module_install.yml\ncisco_cli_modify_config.yml"
+    },
+    {
+      "techniqueID": "T1048",
+      "score": 9,
+      "comment": "net_high_txt_records_requests_rate.yml\nnet_dns_c2_detection.yml\nnet_high_dns_bytes_out.yml\nnet_high_null_records_requests_rate.yml\nnet_high_dns_requests_rate.yml\nwin_tap_driver_installation.yml\npowershell_dnscat_execution.yml\nwin_dns_exfiltration_tools_execution.yml\nwin_tap_installer_execution.yml"
+    },
+    {
+      "techniqueID": "T1071",
+      "score": 1,
+      "comment": "net_susp_dns_txt_exec_strings.yml"
+    },
+    {
+      "techniqueID": "T1208",
+      "score": 7,
+      "comment": "zeek_susp_kerberos_rc4.yml\nsysmon_suspicious_outbound_kerberos_connection.yml\nwin_susp_rc4_kerberos.yml\nwin_suspicious_outbound_kerberos_connection.yml\nwin_register_new_logon_process_by_rubeus.yml\nwin_user_couldnt_call_privileged_service_lsaregisterlogonprocess.yml\nwin_spn_enum.yml"
+    },
+    {
+      "techniqueID": "T1102",
+      "score": 4,
+      "comment": "proxy_cobalt_onedrive.yml\nproxy_raw_paste_service_access.yml\nproxy_cobalt_amazon.yml\nproxy_cobalt_ocsp.yml"
+    },
+    {
+      "techniqueID": "T1033",
+      "score": 5,
+      "comment": "lnx_auditd_user_discovery.yml\nwin_local_system_owner_account_discovery.yml\nwin_susp_whoami.yml\nwin_whoami_as_system.yml\ncisco_cli_discovery.yml"
+    },
+    {
+      "techniqueID": "T1055",
+      "score": 16,
+      "comment": "lnx_auditd_ld_so_preload_mod.yml\nsysmon_mal_namedpipes.yml\nsysmon_createremotethread_loadlibrary.yml\nsysmon_cobaltstrike_process_injection.yml\nsysmon_malware_verclsid_shellcode.yml\nsysmon_suspicious_remote_thread.yml\nsysmon_cactustorch.yml\nsysmon_in_memory_assembly_execution.yml\npowershell_shellcode_b64.yml\nwin_mavinject_proc_inj.yml\nwin_susp_svchost_no_cli.yml\nwin_susp_dctask64_proc_inject.yml\nwin_susp_renamed_dctask64.yml\nwin_exploit_cve_2017_0261.yml\nwin_exploit_cve_2019_1378.yml\nwin_malware_dridex.yml"
+    },
+    {
+      "techniqueID": "T1156",
+      "score": 1,
+      "comment": "lnx_auditd_alter_bash_profile.yml"
+    },
+    {
+      "techniqueID": "T1054",
+      "score": 3,
+      "comment": "lnx_auditd_auditing_config_change.yml\nlnx_auditd_logging_config_change.yml\nwin_disable_event_logging.yml"
+    },
+    {
+      "techniqueID": "T1036",
+      "score": 24,
+      "comment": "lnx_auditd_masquerading_crond.yml\nsysmon_renamed_jusched.yml\nsysmon_renamed_procdump.yml\nwin_new_or_renamed_user_account_with_dollar_sign.yml\nwin_susp_svchost.yml\nwin_apt_ta17_293a_ps.yml\nwin_susp_prog_location_process_starts.yml\nwin_process_dump_rundll32_comsvcs.yml\nwin_susp_exec_folder.yml\nwin_proc_wrong_parent.yml\nwin_renamed_binary_highly_relevant.yml\nwin_powershell_b64_shellcode.yml\nwin_susp_msiexec_cwd.yml\nwin_susp_taskmgr_parent.yml\nwin_susp_run_locations.yml\nwin_renamed_paexec.yml\nwin_susp_taskmgr_localsystem.yml\nwin_susp_execution_path.yml\nwin_system_exe_anomaly.yml\nwin_susp_csc.yml\nwin_renamed_binary.yml\nwin_susp_procdump.yml\nwin_exploit_cve_2015_1641.yml\nwin_susp_calc.yml"
+    },
+    {
+      "techniqueID": "T1040",
+      "score": 5,
+      "comment": "lnx_network_sniffing.yml\nwin_network_sniffing.yml\nwin_netsh_wifi_credential_harvesting.yml\nwin_netsh_packet_capture.yml\ncisco_cli_net_sniff.yml"
+    },
+    {
+      "techniqueID": "T1002",
+      "score": 6,
+      "comment": "lnx_data_compressed.yml\npowershell_data_compressed.yml\nwin_data_compressed_with_rar.yml\nwin_susp_compression_params.yml\nwin_apt_judgement_panda_gtr19.yml\ncisco_cli_moving_data.yml"
+    },
+    {
+      "techniqueID": "T1003",
+      "score": 52,
+      "comment": "sysmon_mimikatz_detection_lsass.yml\nwin_susp_vssadmin_ntds_activity.yml\nsysmon_unsigned_image_loaded_into_lsass.yml\nsysmon_cred_dump_tools_dropped_files.yml\nsysmon_cred_dump_tools_named_pipes.yml\nsysmon_cred_dump_lsass_access.yml\nsysmon_ghostpack_safetykatz.yml\nsysmon_mimikatz_inmemory_detection.yml\nsysmon_lsass_memory_dump_file_creation.yml\nsysmon_password_dumper_lsass.yml\nsysmon_minidumwritedump_lsass.yml\nsysmon_lsass_memdump.yml\nsysmon_mimikatz_trough_winrm.yml\nsysmon_quarkspw_filedump.yml\nsysmon_hack_dumpert.yml\nsysmon_hack_wce.yml\nav_password_dumper.yml\nwin_possible_dc_sync.yml\nwin_alert_lsass_access.yml\nwin_ad_replication_non_machine_account.yml\nwin_susp_lsass_dump.yml\nwin_impacket_secretdump.yml\nwin_mal_service_installs.yml\nwin_dcsync.yml\nwin_transferring_files_with_credential_data_via_network_shares.yml\nwin_dpapi_domain_backupkey_extraction.yml\nwin_dpapi_domain_masterkey_backup_attempt.yml\nwin_alert_mimikatz_keywords.yml\nwin_susp_lsass_dump_generic.yml\nwin_mal_wceaux_dll.yml\nwin_mal_creddumper.yml\nwin_lsass_access_non_system_account.yml\nwin_quarkspwdump_clearing_hive_access_history.yml\nwin_susp_sam_dump.yml\nwin_lsass_dump.yml\nwin_process_dump_rundll32_comsvcs.yml\nwin_susp_ntdsutil.yml\nwin_susp_sysvol_access.yml\nwin_grabbing_sensitive_hives_via_reg.yml\nwin_shadow_copies_access_symlink.yml\nwin_copying_sensitive_files_with_credential_data.yml\nwin_susp_comsvcs_procdump.yml\nwin_shadow_copies_creation.yml\nwin_hack_secutyxploded.yml\nwin_hack_rubeus.yml\nwin_cmdkey_recon.yml\nwin_hktl_createminidump.yml\nwin_susp_procdump.yml\nwin_malware_notpetya.yml\nwin_mimikatz_command_line.yml\nwin_apt_bear_activity_gtr19.yml\ncisco_cli_collect_data.yml"
+    },
+    {
+      "techniqueID": "T1084",
+      "score": 4,
+      "comment": "sysmon_wmi_event_subscription.yml\nsysmon_wmi_persistence_commandline_event_consumer.yml\nsysmon_wmi_persistence_script_event_consumer_write.yml\nwin_wmi_backdoor_exchange_transport_agent.yml"
+    },
+    {
+      "techniqueID": "T1112",
+      "score": 7,
+      "comment": "sysmon_rdp_registry_modification.yml\nsysmon_dhcp_calloutdll.yml\nsysmon_apt_oceanlotus_registry.yml\nsysmon_svchost_dll_search_order_hijack.yml\nwin_mal_ursnif.yml\nwin_remote_registry_management_using_reg_utility.yml\nwin_apt_chafer_mar18.yml"
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 7,
+      "comment": "sysmon_ads_executable.yml\nwin_invoke_obfuscation_obfuscated_iex_services.yml\npowershell_invoke_obfuscation_obfuscated_iex.yml\nwin_susp_ping_hex_ip.yml\nwin_susp_net_execution.yml\nwin_invoke_obfuscation_obfuscated_iex_commandline.yml\nwin_powershell_frombase64string.yml"
+    },
+    {
+      "techniqueID": "T1041",
+      "score": 2,
+      "comment": "sysmon_susp_adsi_cache_usage.yml\nwin_susp_ldap_dataexchange.yml"
+    },
+    {
+      "techniqueID": "T1088",
+      "score": 8,
+      "comment": "sysmon_uac_bypass_eventvwr.yml\nsysmon_uac_bypass_sdclt.yml\nwin_susp_powershell_empire_uac_bypass.yml\nwin_wsreset_uac_bypass.yml\nwin_cmstp_com_object_access.yml\nwin_uac_cmstp.yml\nwin_uac_wsreset.yml\nwin_uac_fodhelper.yml"
+    },
+    {
+      "techniqueID": "T1073",
+      "score": 11,
+      "comment": "sysmon_dhcp_calloutdll.yml\nsysmon_dns_serverlevelplugindll.yml\nsysmon_susp_image_load.yml\nsysmon_svchost_dll_search_order_hijack.yml\nwin_susp_dns_config.yml\nwin_susp_dhcp_config.yml\nwin_susp_dhcp_config_failed.yml\nwin_plugx_susp_exe_locations.yml\nwin_susp_gup.yml\nwin_apt_winnti_mal_hk_jan20.yml\nwin_susp_control_dll_load.yml"
+    },
+    {
+      "techniqueID": "T1060",
+      "score": 6,
+      "comment": "sysmon_narrator_feedback_persistance.yml\nsysmon_susp_reg_persist_explorer_run.yml\nsysmon_asep_reg_keys_modification.yml\nsysmon_susp_download_run_key.yml\nsysmon_susp_run_key_img_folder.yml\nwin_susp_direct_asep_reg_keys_modification.yml"
+    },
+    {
+      "techniqueID": "T1086",
+      "score": 45,
+      "comment": "sysmon_alternate_powershell_hosts_pipe.yml\nsysmon_powershell_execution_moduleload.yml\nsysmon_in_memory_powershell.yml\nsysmon_susp_powershell_rundll32.yml\nsysmon_remote_powershell_session_network.yml\nsysmon_powershell_exploit_scripts.yml\nsysmon_wmi_susp_scripting.yml\nsysmon_alternate_powershell_hosts_moduleload.yml\nsysmon_powershell_network_connection.yml\nwin_remote_powershell_session.yml\npowershell_suspicious_invocation_specific.yml\npowershell_malicious_commandlets.yml\npowershell_shellcode_b64.yml\npowershell_create_local_user.yml\npowershell_alternate_powershell_hosts.yml\npowershell_suspicious_keywords.yml\npowershell_nishang_malicious_commandlets.yml\npowershell_exe_calling_ps.yml\npowershell_remote_powershell_session.yml\npowershell_malicious_keywords.yml\npowershell_downgrade_attack.yml\npowershell_suspicious_download.yml\npowershell_prompt_credentials.yml\npowershell_suspicious_invocation_generic.yml\npowershell_psattack.yml\nwin_powershell_download.yml\nwin_powershell_dll_execution.yml\nwin_susp_powershell_empire_launch.yml\nwin_powershell_amsi_bypass.yml\nwin_apt_babyshark.yml\nwin_encoded_iex.yml\nwin_powershell_downgrade_attack.yml\nwin_susp_powershell_parent_combo.yml\nwin_apt_empiremonkey.yml\nwin_susp_powershell_hidden_b64_cmd.yml\nwin_powershell_suspicious_parameter_variation.yml\nwin_remote_powershell_session_process.yml\nwin_powershell_xor_commandline.yml\nwin_susp_ps_downloadfile.yml\nwin_apt_apt29_thinktanks.yml\nwin_encoded_frombase64string.yml\nwin_susp_powershell_enc_cmd.yml\nwin_powersploit_empire_schtasks.yml\nwin_susp_ps_appdata.yml\nwin_non_interactive_powershell.yml"
+    },
+    {
+      "techniqueID": "T1193",
+      "score": 10,
+      "comment": "sysmon_susp_winword_vbadll_load.yml\nsysmon_susp_office_dotnet_gac_dll_load.yml\nsysmon_susp_office_dotnet_clr_dll_load.yml\nsysmon_susp_office_kerberos_dll_load.yml\nsysmon_susp_office_dsparse_dll_load.yml\nsysmon_registry_trust_record_modification.yml\nsysmon_susp_office_dotnet_assembly_dll_load.yml\nwin_hwp_exploits.yml\nwin_susp_double_extension.yml\nwin_susp_outlook_temp.yml"
+    },
+    {
+      "techniqueID": "T1182",
+      "score": 1,
+      "comment": "sysmon_new_dll_added_to_appcertdlls_registry_key.yml"
+    },
+    {
+      "techniqueID": "T1047",
+      "score": 10,
+      "comment": "sysmon_susp_winword_wmidll_load.yml\nsysmon_wmi_module_load.yml\nwin_wmi_persistence.yml\nwin_susp_wmi_login.yml\npowershell_wmimplant.yml\nwin_impacket_lateralization.yml\nwin_wmiprvse_spawning_process.yml\nwin_susp_wmi_execution.yml\nwin_bypass_squiblytwo.yml\nwin_wmi_persistence_script_event_consumer.yml"
+    },
+    {
+      "techniqueID": "T1105",
+      "score": 7,
+      "comment": "sysmon_apt_pandemic.yml\nsysmon_win_binary_github_com.yml\nsysmon_win_binary_susp_com.yml\nwin_susp_msoffice.yml\nwin_susp_copy_lateral_movement.yml\nwin_susp_certutil_command.yml\ncisco_cli_moving_data.yml"
+    },
+    {
+      "techniqueID": "T1085",
+      "score": 12,
+      "comment": "sysmon_susp_powershell_rundll32.yml\nsysmon_rundll32_net_connections.yml\nwin_apt_equationgroup_dll_u_load.yml\nwin_apt_unidentified_nov_18.yml\nwin_apt_sofacy.yml\nwin_apt_zxshell.yml\nwin_apt_tropictrooper.yml\nwin_crime_fireball.yml\nwin_susp_rundll32_activity.yml\nwin_susp_rundll32_by_ordinal.yml\nwin_malware_notpetya.yml\nwin_susp_control_dll_load.yml"
+    },
+    {
+      "techniqueID": "T1011",
+      "score": 1,
+      "comment": "sysmon_ssp_added_lsa_config.yml"
+    },
+    {
+      "techniqueID": "T1043",
+      "score": 2,
+      "comment": "sysmon_possible_dns_rebinding.yml\nsysmon_malware_backconnect_ports.yml"
+    },
+    {
+      "techniqueID": "T1058",
+      "score": 1,
+      "comment": "sysmon_possible_privilege_escalation_via_service_registry_permissions_weakness.yml"
+    },
+    {
+      "techniqueID": "T1015",
+      "score": 2,
+      "comment": "sysmon_stickykey_like_backdoor.yml\nwin_install_reg_debugger_backdoor.yml"
+    },
+    {
+      "techniqueID": "T1050",
+      "score": 8,
+      "comment": "sysmon_susp_driver_load.yml\nwin_mal_service_installs.yml\nwin_apt_apt29_tor.yml\nwin_rare_service_installs.yml\nwin_apt_turla_service_png.yml\nwin_apt_carbonpaper_turla.yml\nwin_apt_stonedrill.yml\nwin_new_service_creation.yml"
+    },
+    {
+      "techniqueID": "T1006",
+      "score": 1,
+      "comment": "sysmon_raw_disk_access_using_illegitimate_tools.yml"
+    },
+    {
+      "techniqueID": "T1191",
+      "score": 3,
+      "comment": "sysmon_cmstp_execution.yml\nwin_cmstp_com_object_access.yml\nwin_uac_cmstp.yml"
+    },
+    {
+      "techniqueID": "T1076",
+      "score": 4,
+      "comment": "sysmon_rdp_reverse_tunnel.yml\nwin_rdp_reverse_tunnel.yml\nwin_rdp_localhost_login.yml\nwin_susp_tscon_rdp_redirect.yml"
+    },
+    {
+      "techniqueID": "T1122",
+      "score": 1,
+      "comment": "sysmon_registry_persistence_key_linking.yml"
+    },
+    {
+      "techniqueID": "T1037",
+      "score": 1,
+      "comment": "sysmon_logon_scripts_userinitmprlogonscript.yml"
+    },
+    {
+      "techniqueID": "T1177",
+      "score": 1,
+      "comment": "sysmon_susp_lsass_dll_load.yml"
+    },
+    {
+      "techniqueID": "T1028",
+      "score": 1,
+      "comment": "sysmon_mimikatz_trough_winrm.yml"
+    },
+    {
+      "techniqueID": "T1023",
+      "score": 1,
+      "comment": "sysmon_susp_desktop_ini.yml"
+    },
+    {
+      "techniqueID": "T1038",
+      "score": 2,
+      "comment": "sysmon_registry_persistence_search_order.yml\nsysmon_svchost_dll_search_order_hijack.yml"
+    },
+    {
+      "techniqueID": "T1103",
+      "score": 1,
+      "comment": "sysmon_new_dll_added_to_appinit_dlls_registry_key.yml"
+    },
+    {
+      "techniqueID": "T1117",
+      "score": 3,
+      "comment": "sysmon_regsvr32_network_activity.yml\nwin_apt_bluemashroom.yml\nwin_susp_regsvr32_anomalies.yml"
+    },
+    {
+      "techniqueID": "T1183",
+      "score": 1,
+      "comment": "sysmon_win_reg_persistence.yml"
+    },
+    {
+      "techniqueID": "T1203",
+      "score": 2,
+      "comment": "av_exploiting.yml\nwin_exploit_cve_2017_8759.yml"
+    },
+    {
+      "techniqueID": "T1219",
+      "score": 2,
+      "comment": "av_exploiting.yml\nwin_susp_tscon_localsystem.yml"
+    },
+    {
+      "techniqueID": "T1035",
+      "score": 6,
+      "comment": "win_tool_psexec.yml\nwin_hack_smbexec.yml\nwin_mal_service_installs.yml\nwin_mal_creddumper.yml\nwin_psexesvc_start.yml\nwin_service_execution.yml"
+    },
+    {
+      "techniqueID": "T1053",
+      "score": 10,
+      "comment": "win_rare_schtask_creation.yml\nwin_atsvc_task.yml\nwin_rare_schtasks_creations.yml\nwin_GPO_scheduledtasks.yml\nwin_apt_slingshot.yml\nwin_apt_chafer_mar18.yml\nwin_susp_schtask_creation.yml\nwin_powersploit_empire_schtasks.yml\nwin_interactive_at.yml\nwin_win10_sched_task_0day.yml"
+    },
+    {
+      "techniqueID": "T1077",
+      "score": 7,
+      "comment": "win_admin_share_access.yml\nwin_hack_smbexec.yml\nwin_lm_namedpipe.yml\nwin_susp_psexec.yml\nwin_susp_net_execution.yml\nwin_apt_turla_commands.yml\nwin_susp_copy_lateral_movement.yml"
+    },
+    {
+      "techniqueID": "T1211",
+      "score": 3,
+      "comment": "win_susp_msmpeng_crash.yml\nwin_exploit_cve_2017_11882.yml\nwin_task_folder_evasion.yml"
+    },
+    {
+      "techniqueID": "T1200",
+      "score": 2,
+      "comment": "win_usb_device_plugged.yml\nwin_external_device.yml"
+    },
+    {
+      "techniqueID": "T1075",
+      "score": 5,
+      "comment": "win_overpass_the_hash.yml\nwin_susp_ntlm_auth.yml\nwin_pass_the_hash.yml\nwin_pass_the_hash_2.yml\nwin_alert_ruler.yml"
+    },
+    {
+      "techniqueID": "T1212",
+      "score": 3,
+      "comment": "win_susp_samr_pwset.yml\nwin_susp_kerberos_manipulation.yml\nwin_net_ntlm_downgrade.yml"
+    },
+    {
+      "techniqueID": "T1090",
+      "score": 3,
+      "comment": "win_rdp_reverse_tunnel.yml\nwin_netsh_port_fwd.yml\nwin_netsh_fw_add.yml"
+    },
+    {
+      "techniqueID": "T1091",
+      "score": 1,
+      "comment": "win_external_device.yml"
+    },
+    {
+      "techniqueID": "T1107",
+      "score": 3,
+      "comment": "win_susp_sdelete.yml\nwin_susp_backup_delete.yml\ncisco_cli_file_deletion.yml"
+    },
+    {
+      "techniqueID": "T1066",
+      "score": 1,
+      "comment": "win_susp_sdelete.yml"
+    },
+    {
+      "techniqueID": "T1009",
+      "score": 1,
+      "comment": "win_susp_codeintegrity_check_failure.yml"
+    },
+    {
+      "techniqueID": "T1021",
+      "score": 2,
+      "comment": "win_protected_storage_service_access.yml\nwin_netsh_port_fwd_3389.yml"
+    },
+    {
+      "techniqueID": "T1087",
+      "score": 9,
+      "comment": "win_ad_user_enumeration.yml\nwin_account_discovery.yml\nwin_alert_ruler.yml\nwin_susp_net_recon_activity.yml\nwin_hack_bloodhound.yml\nwin_local_system_owner_account_discovery.yml\nwin_susp_recon_activity.yml\nwin_susp_commands_recon_activity.yml\ncisco_cli_collect_data.yml"
+    },
+    {
+      "techniqueID": "T1134",
+      "score": 4,
+      "comment": "win_meterpreter_or_cobaltstrike_getsystem_service_installation.yml\nwin_meterpreter_or_cobaltstrike_getsystem_service_start.yml\nwin_using_sc_to_change_sevice_image_path_by_non_admin.yml\nwin_possible_privilege_escalation_using_rotten_potato.yml"
+    },
+    {
+      "techniqueID": "T1178",
+      "score": 1,
+      "comment": "win_susp_add_sid_history.yml"
+    },
+    {
+      "techniqueID": "T1070",
+      "score": 9,
+      "comment": "win_susp_security_eventlog_cleared.yml\nwin_susp_eventlog_cleared.yml\nwin_etw_trace_evasion.yml\nwin_shadow_copies_deletion.yml\nwin_susp_bcdedit.yml\nwin_malware_notpetya.yml\nwin_susp_eventlog_clear.yml\nwin_susp_fsutil_usage.yml\ncisco_cli_clear_logs.yml"
+    },
+    {
+      "techniqueID": "T1012",
+      "score": 5,
+      "comment": "win_sam_registry_hive_handle_request.yml\nwin_remote_registry_management_using_reg_utility.yml\nwin_syskey_registry_access.yml\nwin_apt_babyshark.yml\nwin_query_registry.yml"
+    },
+    {
+      "techniqueID": "T1171",
+      "score": 1,
+      "comment": "win_susp_rottenpotato.yml"
+    },
+    {
+      "techniqueID": "T1175",
+      "score": 3,
+      "comment": "win_mmc20_lateral_movement.yml\nwin_impacket_lateralization.yml\nwin_mmc_spawn_shell.yml"
+    },
+    {
+      "techniqueID": "T1136",
+      "score": 5,
+      "comment": "win_user_creation.yml\nwin_susp_local_anon_logon_created.yml\npowershell_create_local_user.yml\nwin_net_user_add.yml\ncisco_cli_local_accounts.yml"
+    },
+    {
+      "techniqueID": "T1114",
+      "score": 1,
+      "comment": "win_alert_ruler.yml"
+    },
+    {
+      "techniqueID": "T1099",
+      "score": 1,
+      "comment": "win_susp_time_modification.yml"
+    },
+    {
+      "techniqueID": "T1069",
+      "score": 1,
+      "comment": "win_susp_net_recon_activity.yml"
+    },
+    {
+      "techniqueID": "T1140",
+      "score": 6,
+      "comment": "win_susp_mshta_execution.yml\nwin_encoded_iex.yml\nwin_susp_ping_hex_ip.yml\nwin_susp_cli_escape.yml\nwin_encoded_frombase64string.yml\nwin_susp_certutil_command.yml"
+    },
+    {
+      "techniqueID": "T1004",
+      "score": 1,
+      "comment": "powershell_winlogon_helper_dll.yml"
+    },
+    {
+      "techniqueID": "T1096",
+      "score": 2,
+      "comment": "powershell_ntfs_ads_access.yml\nwin_run_powershell_script_from_ads.yml"
+    },
+    {
+      "techniqueID": "T1202",
+      "score": 5,
+      "comment": "win_hwp_exploits.yml\nwin_office_spawn_exe_from_users_directory.yml\nwin_susp_outlook.yml\nwin_office_shell.yml\nwin_indirect_cmd.yml"
+    },
+    {
+      "techniqueID": "T1218",
+      "score": 10,
+      "comment": "win_mavinject_proc_inj.yml\nwin_susp_cdb.yml\nwin_susp_dxcap.yml\nwin_susp_odbcconf.yml\nwin_susp_dnx.yml\nwin_susp_bginfo.yml\nwin_susp_psr_capture_screenshots.yml\nwin_susp_devtoolslauncher.yml\nwin_susp_openwith.yml\nwin_susp_curl_start_combo.yml"
+    },
+    {
+      "techniqueID": "T1220",
+      "score": 1,
+      "comment": "win_xsl_script_processing.yml"
+    },
+    {
+      "techniqueID": "T1018",
+      "score": 2,
+      "comment": "win_net_enum.yml\ncisco_cli_discovery.yml"
+    },
+    {
+      "techniqueID": "T1158",
+      "score": 1,
+      "comment": "win_attrib_hiding_files.yml"
+    },
+    {
+      "techniqueID": "T1170",
+      "score": 6,
+      "comment": "win_apt_babyshark.yml\nwin_lethalhta.yml\nwin_possible_applocker_bypass.yml\nwin_mshta_spawn_shell.yml\nwin_mshta_javascript.yml\nwin_hack_koadic.yml"
+    },
+    {
+      "techniqueID": "T1007",
+      "score": 1,
+      "comment": "win_query_registry.yml"
+    },
+    {
+      "techniqueID": "T1123",
+      "score": 2,
+      "comment": "win_soundrec_audio_capture.yml\nwin_powershell_audio_capture.yml"
+    },
+    {
+      "techniqueID": "T1042",
+      "score": 1,
+      "comment": "win_change_default_file_association.yml"
+    },
+    {
+      "techniqueID": "T1482",
+      "score": 3,
+      "comment": "win_malware_trickbot_recon_activity.yml\nwin_trust_discovery.yml\nwin_dsquery_domain_trust_discovery.yml"
+    },
+    {
+      "techniqueID": "T1124",
+      "score": 2,
+      "comment": "win_remote_time_discovery.yml\ncisco_cli_discovery.yml"
+    },
+    {
+      "techniqueID": "T1127",
+      "score": 3,
+      "comment": "win_susp_use_of_csharp_console.yml\nwin_workflow_compiler.yml\nwin_possible_applocker_bypass.yml"
+    },
+    {
+      "techniqueID": "T1031",
+      "score": 1,
+      "comment": "win_susp_service_path_modification.yml"
+    },
+    {
+      "techniqueID": "T1049",
+      "score": 2,
+      "comment": "win_susp_net_execution.yml\ncisco_cli_discovery.yml"
+    },
+    {
+      "techniqueID": "T1135",
+      "score": 2,
+      "comment": "win_susp_net_execution.yml\nwin_apt_turla_commands.yml"
+    },
+    {
+      "techniqueID": "T1490",
+      "score": 3,
+      "comment": "win_shadow_copies_deletion.yml\nwin_bootconf_mod.yml\ncisco_cli_modify_config.yml"
+    },
+    {
+      "techniqueID": "T1083",
+      "score": 2,
+      "comment": "win_apt_turla_commands.yml\ncisco_cli_discovery.yml"
+    },
+    {
+      "techniqueID": "T1197",
+      "score": 2,
+      "comment": "win_powershell_bitsjob.yml\nwin_process_creation_bitsadmin_download.yml"
+    },
+    {
+      "techniqueID": "T1138",
+      "score": 1,
+      "comment": "win_sdbinst_shim_persistence.yml"
+    },
+    {
+      "techniqueID": "T1196",
+      "score": 1,
+      "comment": "win_control_panel_item.yml"
+    },
+    {
+      "techniqueID": "T1118",
+      "score": 1,
+      "comment": "win_possible_applocker_bypass.yml"
+    },
+    {
+      "techniqueID": "T1121",
+      "score": 1,
+      "comment": "win_possible_applocker_bypass.yml"
+    },
+    {
+      "techniqueID": "T1128",
+      "score": 1,
+      "comment": "win_susp_netsh_dll_persistence.yml"
+    },
+    {
+      "techniqueID": "T1067",
+      "score": 1,
+      "comment": "win_susp_bcdedit.yml"
+    },
+    {
+      "techniqueID": "T1500",
+      "score": 1,
+      "comment": "win_susp_csc_folder.yml"
+    },
+    {
+      "techniqueID": "T1489",
+      "score": 1,
+      "comment": "win_service_stop.yml"
+    },
+    {
+      "techniqueID": "T1223",
+      "score": 2,
+      "comment": "win_hh_chm.yml\nwin_html_help_spawn.yml"
+    },
+    {
+      "techniqueID": "T1082",
+      "score": 2,
+      "comment": "win_susp_commands_recon_activity.yml\ncisco_cli_discovery.yml"
+    },
+    {
+      "techniqueID": "T1046",
+      "score": 1,
+      "comment": "win_vul_java_remote_debugging.yml"
+    },
+    {
+      "techniqueID": "T1081",
+      "score": 2,
+      "comment": "win_apt_bear_activity_gtr19.yml\ncisco_cli_collect_data.yml"
+    },
+    {
+      "techniqueID": "T1074",
+      "score": 1,
+      "comment": "cisco_cli_moving_data.yml"
+    },
+    {
+      "techniqueID": "T1492",
+      "score": 1,
+      "comment": "cisco_cli_moving_data.yml"
+    },
+    {
+      "techniqueID": "T1201",
+      "score": 1,
+      "comment": "cisco_cli_discovery.yml"
+    },
+    {
+      "techniqueID": "T1057",
+      "score": 1,
+      "comment": "cisco_cli_discovery.yml"
+    },
+    {
+      "techniqueID": "T1016",
+      "score": 1,
+      "comment": "cisco_cli_discovery.yml"
+    },
+    {
+      "techniqueID": "T1139",
+      "score": 1,
+      "comment": "cisco_cli_input_capture.yml"
+    },
+    {
+      "techniqueID": "T1056",
+      "score": 1,
+      "comment": "cisco_cli_input_capture.yml"
+    },
+    {
+      "techniqueID": "T1130",
+      "score": 1,
+      "comment": "cisco_cli_crypto_actions.yml"
+    },
+    {
+      "techniqueID": "T1145",
+      "score": 1,
+      "comment": "cisco_cli_crypto_actions.yml"
+    },
+    {
+      "techniqueID": "T1499",
+      "score": 1,
+      "comment": "cisco_cli_dos.yml"
+    },
+    {
+      "techniqueID": "T1495",
+      "score": 1,
+      "comment": "cisco_cli_dos.yml"
+    },
+    {
+      "techniqueID": "T1005",
+      "score": 1,
+      "comment": "cisco_cli_collect_data.yml"
+    },
+    {
+      "techniqueID": "T1488",
+      "score": 1,
+      "comment": "cisco_cli_file_deletion.yml"
+    },
+    {
+      "techniqueID": "T1487",
+      "score": 1,
+      "comment": "cisco_cli_file_deletion.yml"
+    },
+    {
+      "techniqueID": "T1493",
+      "score": 1,
+      "comment": "cisco_cli_modify_config.yml"
+    },
+    {
+      "techniqueID": "T1168",
+      "score": 1,
+      "comment": "cisco_cli_modify_config.yml"
+    }
+  ]
+}
