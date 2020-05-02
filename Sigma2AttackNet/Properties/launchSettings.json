@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Sigma2AttackNet": {
+      "commandName": "Project",
+      "commandLineArgs": "-d C:\\Users\\Pedro\\Documents\\github\\3coresecsigma\\sigma\\rules -o coverage"
+    }
+  }
+}
