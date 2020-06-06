@@ -27,8 +27,8 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: eu-central-1
     - name: Delete files in S3 bucket
-      run: aws s3 rm s3://3cs-s2an --recursive  
+      run: aws s3 rm s3://s2an.3coresec.net --recursive --exclude "index.html"
     - name: Copy files to S3 bucket
-      run: aws s3 cp publish s3://3cs-s2an/ --recursive --exclude "*.pdb"
+      run: aws s3 cp publish s3://s2an.3coresec.net/ --recursive --exclude "*.pdb"
     - name: Create invalidation on CloudFront
       run: aws cloudfront create-invalidation --distribution-id E30C99TWH423J8 --paths "/*"
