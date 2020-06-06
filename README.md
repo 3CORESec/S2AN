@@ -15,8 +15,8 @@ You are free to review the source code we make available in this repository.
 
 The pre-compiled binaries are available for download and you can reference them in your pipeline *(or download for manual execution)* as they will always point towards the latest version:
 
-* GNU/Linux: https://d12qunpqqrncnn.cloudfront.net/linux/Sigma2AttackNet 
-* Windows: https://d12qunpqqrncnn.cloudfront.net/windows/Sigma2AttackNet.exe
+* GNU/Linux: https://s2an.3coresec.net/linux/Sigma2AttackNet 
+* Windows: https://s2an.3coresec.net/windows/Sigma2AttackNet.exe
 
 # Running Sigma2AttackNet
 
