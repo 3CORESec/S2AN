@@ -91,7 +91,7 @@ namespace Sigma2AttackNet
                             maxValue = gradientMax,
                             minValue = 0
                         },
-                        version = "2.2",
+                        version = "3.0",
                         techniques = entries
                     }, Formatting.Indented, new JsonSerializerSettings
                     {
