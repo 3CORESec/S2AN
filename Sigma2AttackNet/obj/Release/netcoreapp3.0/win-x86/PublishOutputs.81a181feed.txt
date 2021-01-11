@@ -1,0 +1,2 @@
+C:\Users\pedro\Documents\repos\S2AN\Sigma2AttackNet\bin\Release\netcoreapp3.0\publish\Sigma2AttackNet.pdb
+C:\Users\pedro\Documents\repos\S2AN\Sigma2AttackNet\bin\Release\netcoreapp3.0\publish\Sigma2AttackNet.exe

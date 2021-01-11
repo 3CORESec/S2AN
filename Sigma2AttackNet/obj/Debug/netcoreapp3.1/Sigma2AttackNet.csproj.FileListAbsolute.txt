@@ -1,0 +1,17 @@
+C:\Users\pedro\Documents\repos\S2AN\Sigma2AttackNet\bin\Debug\netcoreapp3.1\Sigma2AttackNet.exe
+C:\Users\pedro\Documents\repos\S2AN\Sigma2AttackNet\bin\Debug\netcoreapp3.1\Sigma2AttackNet.deps.json
+C:\Users\pedro\Documents\repos\S2AN\Sigma2AttackNet\bin\Debug\netcoreapp3.1\Sigma2AttackNet.runtimeconfig.json
+C:\Users\pedro\Documents\repos\S2AN\Sigma2AttackNet\bin\Debug\netcoreapp3.1\Sigma2AttackNet.runtimeconfig.dev.json
+C:\Users\pedro\Documents\repos\S2AN\Sigma2AttackNet\bin\Debug\netcoreapp3.1\Sigma2AttackNet.dll
+C:\Users\pedro\Documents\repos\S2AN\Sigma2AttackNet\bin\Debug\netcoreapp3.1\Sigma2AttackNet.pdb
+C:\Users\pedro\Documents\repos\S2AN\Sigma2AttackNet\bin\Debug\netcoreapp3.1\CommandLine.dll
+C:\Users\pedro\Documents\repos\S2AN\Sigma2AttackNet\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\pedro\Documents\repos\S2AN\Sigma2AttackNet\bin\Debug\netcoreapp3.1\YamlDotNet.dll
+C:\Users\pedro\Documents\repos\S2AN\Sigma2AttackNet\obj\Debug\netcoreapp3.1\Sigma2AttackNet.csprojAssemblyReference.cache
+C:\Users\pedro\Documents\repos\S2AN\Sigma2AttackNet\obj\Debug\netcoreapp3.1\Sigma2AttackNet.AssemblyInfoInputs.cache
+C:\Users\pedro\Documents\repos\S2AN\Sigma2AttackNet\obj\Debug\netcoreapp3.1\Sigma2AttackNet.AssemblyInfo.cs
+C:\Users\pedro\Documents\repos\S2AN\Sigma2AttackNet\obj\Debug\netcoreapp3.1\Sigma2AttackNet.csproj.CoreCompileInputs.cache
+C:\Users\pedro\Documents\repos\S2AN\Sigma2AttackNet\obj\Debug\netcoreapp3.1\Sigma2AttackNet.csproj.CopyComplete
+C:\Users\pedro\Documents\repos\S2AN\Sigma2AttackNet\obj\Debug\netcoreapp3.1\Sigma2AttackNet.dll
+C:\Users\pedro\Documents\repos\S2AN\Sigma2AttackNet\obj\Debug\netcoreapp3.1\Sigma2AttackNet.pdb
+C:\Users\pedro\Documents\repos\S2AN\Sigma2AttackNet\obj\Debug\netcoreapp3.1\Sigma2AttackNet.genruntimeconfig.cache

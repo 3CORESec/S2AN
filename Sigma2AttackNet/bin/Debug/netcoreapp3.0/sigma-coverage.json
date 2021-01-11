@@ -1,0 +1,140 @@
+{
+  "domain": "mitre-enterprise",
+  "name": "Sigma rules coverage",
+  "gradient": {
+    "colors": [
+      "#a0eab5",
+      "#0f480f"
+    ],
+    "maxValue": 25,
+    "minValue": 0
+  },
+  "version": "3.0",
+  "techniques": [
+    {
+      "techniqueID": "T98GF",
+      "score": 1,
+      "comment": "aws_guardduty_disabled.yml"
+    },
+    {
+      "techniqueID": "T1562",
+      "score": 6,
+      "comment": "aws_guardduty_disabled.yml\r\naws_guardduty_suspended.yml\r\naws_s3_bucket_access_logging_disabled.yml\r\naws_s3_bucket_loose_public_access_block_policy.yml\r\naws_s3_bucket_policy_modified.yml\r\naws_s3_delete_cloudtrail_bucket.yml"
+    },
+    {
+      "techniqueID": "T1078.004",
+      "score": 16,
+      "comment": "aws_guardduty_disabled.yml\r\naws_guardduty_suspended.yml\r\naws_s3_bucket_access_logging_disabled.yml\r\naws_s3_bucket_acl_read_permission_detected.yml\r\naws_s3_bucket_acl_write_permission_detected.yml\r\naws_s3_bucket_full_control_detected.yml\r\naws_s3_bucket_loose_public_access_block_policy.yml\r\naws_s3_bucket_policy_modified.yml\r\naws_s3_bucket_read_permission_detected.yml\r\naws_s3_bucket_write_permission_detected.yml\r\naws_s3_create_bucket_with_loose_acl.yml\r\naws_s3_delete_cloudtrail_bucket.yml\r\naws_s3_object_acl_read_permission_detected.yml\r\naws_s3_object_acl_write_permission_detected.yml\r\naws_s3_object_full_control_detected.yml\r\naws_s3_object_read_permission_detected.yml"
+    },
+    {
+      "techniqueID": "T1098",
+      "score": 12,
+      "comment": "aws_guardduty_finding_archived.yml\r\naws_guardduty_finding_publish_destination_deleted.yml\r\naws_guardduty_finding_publish_destination_updated.yml\r\naws_guardduty_finding_publish_frequency.yml\r\naws_guardduty_member_account_deleted.yml\r\naws_guardduty_member_account_monitoring_disabled.yml\r\naws_guardduty_suspended.yml\r\naws_guardduty_threat_intel_list_deleted.yml\r\naws_guardduty_threat_intel_list_delete_failure.yml\r\naws_guardduty_threat_intel_list_updated.yml\r\naws_guardduty_trusted_ip_list_created.yml\r\naws_guardduty_trusted_ip_list_enabled.yml"
+    },
+    {
+      "techniqueID": "T1005",
+      "score": 1,
+      "comment": "win_browser_information_dump.yml"
+    },
+    {
+      "techniqueID": "T1562.006",
+      "score": 2,
+      "comment": "win_posh_etw_tamper.yml\r\nwin_etw_tamper.yml"
+    },
+    {
+      "techniqueID": "T1562.002",
+      "score": 2,
+      "comment": "win_posh_eventlog_service_start_type_mod.yml\r\nwin_eventlog_service_start_type_mod.yml"
+    },
+    {
+      "techniqueID": "T1543.003",
+      "score": 3,
+      "comment": "win_posh_eventlog_service_start_type_mod.yml\r\nwin_eventlog_service_start_type_mod.yml\r\nwin_susp_service_dacl_modification.yml"
+    },
+    {
+      "techniqueID": "T1082",
+      "score": 3,
+      "comment": "win_posh_recon.yml\r\nwin_wmic_wmi_recon.yml\r\nwin_wmi_posh_recon.yml"
+    },
+    {
+      "techniqueID": "T1049",
+      "score": 1,
+      "comment": "win_posh_recon.yml"
+    },
+    {
+      "techniqueID": "T1033",
+      "score": 1,
+      "comment": "win_posh_recon.yml"
+    },
+    {
+      "techniqueID": "T1518.001",
+      "score": 3,
+      "comment": "win_posh_recon.yml\r\nwin_wmic_wmi_recon.yml\r\nwin_wmi_posh_recon.yml"
+    },
+    {
+      "techniqueID": "T1057",
+      "score": 1,
+      "comment": "win_posh_recon.yml"
+    },
+    {
+      "techniqueID": "T1070.001",
+      "score": 1,
+      "comment": "win_susp_eventlog_clear.yml"
+    },
+    {
+      "techniqueID": "T1562.004",
+      "score": 1,
+      "comment": "win_susp_fw_disable.yml"
+    },
+    {
+      "techniqueID": "T1003.003",
+      "score": 2,
+      "comment": "win_susp_ntdsutil.yml\r\nwin_susp_vssadmin_ntds_activity.yml"
+    },
+    {
+      "techniqueID": "T1218.011",
+      "score": 1,
+      "comment": "win_susp_rundll32_activity.yml"
+    },
+    {
+      "techniqueID": "T1087.001",
+      "score": 2,
+      "comment": "win_wmic_wmi_recon.yml\r\nwin_wmi_posh_recon.yml"
+    },
+    {
+      "techniqueID": "T1016",
+      "score": 2,
+      "comment": "win_wmic_wmi_recon.yml\r\nwin_wmi_posh_recon.yml"
+    },
+    {
+      "techniqueID": "T1135",
+      "score": 2,
+      "comment": "win_wmic_wmi_recon.yml\r\nwin_wmi_posh_recon.yml"
+    },
+    {
+      "techniqueID": "T1069.001",
+      "score": 2,
+      "comment": "win_wmic_wmi_recon.yml\r\nwin_wmi_posh_recon.yml"
+    },
+    {
+      "techniqueID": "T1059",
+      "score": 2,
+      "comment": "win_wmic_wmi_recon.yml\r\nwin_wmi_posh_recon.yml"
+    },
+    {
+      "techniqueID": "T1007",
+      "score": 2,
+      "comment": "win_wmic_wmi_recon.yml\r\nwin_wmi_posh_recon.yml"
+    },
+    {
+      "techniqueID": "T1530",
+      "score": 1,
+      "comment": "aws_s3_bucket_public.yml"
+    },
+    {
+      "techniqueID": "T1537",
+      "score": 1,
+      "comment": "aws_s3_bucket_public.yml"
+    }
+  ]
+}

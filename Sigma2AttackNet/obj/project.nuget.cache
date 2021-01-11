@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "cxKy2nVWq7tcvWCXtD30Iv2aY/SwJiQnVTfjz4Kctz0dLfkvIjn0ofOeUPP0hir5bV8l5+rg8Bunthz/LxFluQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\pedro\\Documents\\repos\\S2AN\\Sigma2AttackNet\\Sigma2AttackNet.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\pedro\\.nuget\\packages\\commandlineparser\\2.7.82\\commandlineparser.2.7.82.nupkg.sha512",
+    "C:\\Users\\pedro\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\pedro\\.nuget\\packages\\yamldotnet\\8.1.1\\yamldotnet.8.1.1.nupkg.sha512"
+  ],
+  "logs": []
+}
