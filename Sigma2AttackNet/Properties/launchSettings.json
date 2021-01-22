@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "Sigma2AttackNet": {
-      "commandName": "Project",
-      "commandLineArgs": "-d C:\\Users\\pedro\\Downloads\\testes_rules"
-    }
-  }
-}
