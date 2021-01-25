@@ -38,8 +38,8 @@ The pre-compiled binaries are available for download and you can reference them 
 
 # Running Sigma2AttackNet
 
-Generate Navigator layer: `./Sigma2AttackNet -d folder_with_sigma_rules/`
-Generate Navigator layer and identify mismatch: `./Sigma2AttackNet -d folder_with_sigma_rules/ -w`
+* Generate Navigator layer: `./Sigma2AttackNet -d folder_with_sigma_rules/`
+* Generate Navigator layer and identify mismatch: `./Sigma2AttackNet -d folder_with_sigma_rules/ -w`
 
 ## Tactic & Technique mismatch
 
