@@ -152,7 +152,7 @@ namespace Sigma2AttackNet
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     }));
-                    Console.WriteLine($"[*] Layer file written in {o.OutFile} ({ruleCount} rules)");
+                    Console.WriteLine($"[*] Layer file written in {o.OutFile}");
                     if (warnings.Any())
                     {
                         Console.WriteLine(" ");
