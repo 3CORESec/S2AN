@@ -3,11 +3,29 @@
 # S2AN
 **S**igma**2A**ttack**N**et - Mapper of Sigma Rules ➡️  MITRE ATT&amp;CK 
 
-S2AN is a standalone tool developed in .NET Core, available for both Linux and Windows (x64), that will run through a folder of [Sigma](https://github.com/Neo23x0/sigma) rules and create an [ATT&CK Navigator](https://mitre-attack.github.io/attack-navigator/enterprise/) layer based on the techniques covered by the Sigma rules.
+S2AN is a standalone tool developed in .NET Core, available for both Linux and Windows (x64), meant to interact with a folder holding [Sigma](https://github.com/Neo23x0/sigma) rules. Currently the following features are supported:
+
+* Create an [ATT&CK Navigator](https://mitre-attack.github.io/attack-navigator/enterprise/) layer based on the techniques covered by the Sigma rules.
+* Identify mismatches between tactics and techniques in the rule files, that could result from improper categorization or updates to the framework
 
 Our main motivation behind its development was to have a tool that we could reference in a CI/CD pipeline when running in a minimal build environment *(without having or wanting to install Python dependencies)*.
 
-S2AN is based on a [similar tool](https://github.com/Neo23x0/sigma/blob/master/tools/sigma2attack) available in the official Sigma repository.
+Some of S2AN features are based on a [similar tool](https://github.com/Neo23x0/sigma/blob/master/tools/sigma2attack) available in the official Sigma repository.
+
+## Example output
+
+```
+$ ./Sigma2AttackNet -d rules/ -w
+ 
+S2AN by 3CORESec - https://github.com/3CORESec/S2AN
+ 
+[*] Layer file written in sigma-coverage.json (6 rules)
+ 
+Attention - mismatch between technique and tactic has been detected!
+MITRE ATT&CK technique (T1543.003) and tactic (defense-evasion) mismatch in rule: rules/win_eventlog_service_start_type_mod_error.yml
+MITRE ATT&CK technique (T1543.003) and tactic (defense-evasion) mismatch in rule: rules/win_eventlog_service_start_type_mod.yml
+MITRE ATT&CK technique (T1003.003) and tactic (credential-dumping) mismatch in rule: rules/win_susp_vssadmin_ntds_activity.yml
+```
 
 # Download
 
@@ -20,11 +38,21 @@ The pre-compiled binaries are available for download and you can reference them 
 
 # Running Sigma2AttackNet
 
-`./Sigma2AttackNet -d folder_with_sigma_rules/`
+* Generate Navigator layer: `./Sigma2AttackNet -d folder_with_sigma_rules/`
+* Generate Navigator layer and identify mismatch: `./Sigma2AttackNet -d folder_with_sigma_rules/ -w`
 
-# Considerations
+## Tactic & Technique mismatch
 
-S2AN does not attempt to parse or validate the YAML files. We extract the tags that are relevant for the mapping from the rule file and create our JSON layer solely based on that.
+In order to make use of the detection of mismatches in your rules, S2AN expects the following format:
+
+```
+tags:
+  - attack.persistence
+  - attack.t1543.003
+  - attack.defense_evasion
+  - attack.t1562.002
+  - attack.t1543.003
+``` 
 
 # Example Layer
 
