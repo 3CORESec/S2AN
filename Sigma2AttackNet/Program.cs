@@ -22,7 +22,7 @@ namespace Sigma2AttackNet
             public string RulesDirectory { get; set; }
             [Option('o', "out-file", Required = false, HelpText = "File to write the JSON layer to")]
             public string OutFile { get; set; } = "sigma-coverage.json";
-            [Option("no-comment", Required = false, HelpText = "Don't store rule names in comments")]
+            [Option('n', "no-comment", Required = false, HelpText = "Don't store rule names in comments")]
             public bool NoComment { get; set; } = false;
             [Option('w', "warning", Required = false, HelpText = "Check for ATT&CK technique and tactic mismatch")]
             public bool Warning { get; set; } = false;
