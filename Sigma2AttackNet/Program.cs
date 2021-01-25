@@ -87,6 +87,7 @@ namespace Sigma2AttackNet
                             var dict = deserializer.Deserialize<Dictionary<string, dynamic>>(contents);
                             if (dict.ContainsKey("tags"))
                             {
+                                ruleCount++;
                                 var tags = dict["tags"];
                                 string category = null;
                                 foreach (string tag in tags)
@@ -94,7 +95,6 @@ namespace Sigma2AttackNet
                                     if (tag.ToLower().StartsWith("attack.t"))
                                     {
                                         var techniqueId = tag.Replace("attack.", "").ToUpper();
-                                        ruleCount++;
                                         if (!techs.ContainsKey(techniqueId))
                                             techs[techniqueId] = new List<string>();
                                         techs[techniqueId].Add(ruleFile.Split("\\").Last());
@@ -152,7 +152,7 @@ namespace Sigma2AttackNet
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     }));
-                    Console.WriteLine($"[*] Layer file written in {o.OutFile}");
+                    Console.WriteLine($"[*] Layer file written in {o.OutFile} ({ruleCount} rules)");
                     if (warnings.Any())
                     {
                         Console.WriteLine(" ");
