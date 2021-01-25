@@ -16,7 +16,7 @@ namespace Sigma2AttackNet
     {
         public class Options
         {
-            [Option("category-url", Required = false, HelpText = "Url with mitre matrix")]
+            [Option('c',"category-url", Required = false, HelpText = "URL with MITRE matrix")]
             public string CategoryMatrix { get; set; }
             [Option('d', "rules-directory", Required = true, HelpText = "Directory to read rules from")]
             public string RulesDirectory { get; set; }
@@ -38,7 +38,7 @@ namespace Sigma2AttackNet
             int ruleCount = 0;
             int gradientMax = 0;
             Console.WriteLine(" ");
-            Console.WriteLine($"S2AN by: 3CORESec - {temp["repo_url"]}");
+            Console.WriteLine($"S2AN by 3CORESec - {temp["repo_url"]}");
             Console.WriteLine(" ");
             Parser.Default.ParseArguments<Options>(args)
                 .WithParsed(o =>
