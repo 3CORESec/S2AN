@@ -3,10 +3,12 @@
 # S2AN
 **S**igma**2A**ttack**N**et - Mapper of Sigma Rules ➡️  MITRE ATT&amp;CK 
 
-S2AN is a standalone tool developed in .NET Core, available for both Linux and Windows (x64), meant to interact with a folder holding [Sigma](https://github.com/Neo23x0/sigma) rules. Currently the following features are supported:
+S2AN is a standalone tool developed in .NET Core, available for both Linux and Windows (x64), meant to interact with a folder holding [Sigma](https://github.com/Neo23x0/sigma) rules as well as Suricata signatures. Currently the following features are supported:
 
-* Create an [ATT&CK Navigator](https://mitre-attack.github.io/attack-navigator/enterprise/) layer based on the techniques covered by the Sigma rules.
-* Identify mismatches between tactics and techniques in the rule files, that could result from improper categorization or updates to the framework
+* Create an [ATT&CK Navigator](https://mitre-attack.github.io/attack-navigator/enterprise/) layer based on the techniques covered by:
+**  Sigma rules
+** Suricata signatures
+* Identify mismatches between tactics and techniques in the Sigma rule files, that could result from improper categorization or updates to the framework
 
 Our main motivation behind its development was to have a tool that we could reference in a CI/CD pipeline when running in a minimal build environment *(without having or wanting to install Python dependencies)*.
 
@@ -40,10 +42,11 @@ The pre-compiled binaries are available for download and you can reference them 
 
 * Generate Navigator layer: `./Sigma2AttackNet -d folder_with_sigma_rules/`
 * Generate Navigator layer and identify mismatch: `./Sigma2AttackNet -d folder_with_sigma_rules/ -w`
+* Generate Navigator layer from Suricata signatures: `./Sigma2AttackNet -s folder_with_signatures/` 
 
 ## Tactic & Technique mismatch
 
-In order to make use of the detection of mismatches in your rules, S2AN expects the following format:
+In order to make use of the detection of mismatches in your rules, S2AN expects the following format _(this feature is only available for Sigma rules)_:
 
 ```
 tags:
