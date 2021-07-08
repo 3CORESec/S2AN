@@ -267,7 +267,7 @@ namespace S2AN
                 {
                     NullValueHandling = NullValueHandling.Ignore
                 }));
-                Console.WriteLine($"[*] Layer file written in {filename} ({entries.Count()} rules)");
+                Console.WriteLine($"[*] Layer file written in {filename} ({entries.Count()} techniques covered)");
             }
             catch (Exception e)
             {
