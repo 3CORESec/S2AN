@@ -317,7 +317,7 @@ namespace Sigma2AttackNet
                     if (res.ContainsKey(technique))
                         res[technique].Add($"{sid} - {msg}");
                     else
-                        res.Add(technique, new List<string>{ $"\n{sid} - {msg}"});
+                        res.Add(technique, new List<string>{ $"{sid} - {msg}"});
                 }
                 line = contents.ReadLine();
             }
