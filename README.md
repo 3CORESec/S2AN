@@ -1,7 +1,7 @@
 ![Build and deploy to AWS S3](https://github.com/3CORESec/S2AN/workflows/Build%20and%20deploy%20to%20S3/badge.svg)
 
 # S2AN
-**S**igma**2A**ttack**N**et - Mapper of Sigma Rules ➡️  MITRE ATT&amp;CK 
+S2AN - Mapper of Sigma/Suricata Rules ➡️  MITRE ATT&amp;CK 
 
 S2AN is a standalone tool developed in .NET Core, available for both Linux and Windows (x64), meant to interact with a folder holding [Sigma](https://github.com/Neo23x0/sigma) rules as well as Suricata signatures. Currently the following features are supported:
 
