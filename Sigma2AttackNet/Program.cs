@@ -21,11 +21,14 @@ namespace Sigma2AttackNet
             [Option('d', "rules-directory", Required = true, HelpText = "Directory to read rules from")]
             public string RulesDirectory { get; set; }
             [Option('o', "out-file", Required = false, HelpText = "File to write the JSON layer to")]
-            public string OutFile { get; set; } = "sigma-coverage.json";
+            public string OutFile { get; set; } = ".json";
             [Option('n', "no-comment", Required = false, HelpText = "Don't store rule names in comments")]
             public bool NoComment { get; set; } = false;
             [Option('w', "warning", Required = false, HelpText = "Check for ATT&CK technique and tactic mismatch")]
             public bool Warning { get; set; } = false;
+            [Option('s', "suricata", Required = false, HelpText = "Enable Suricata signature parsing")]
+            public bool Suricata { get; set; } = false;
+
         }
         //Matrix to search for mismatches in case of w option
         static Dictionary<string, List<string>> mismatchSearchMatrix = new Dictionary<string, List<string>>();
@@ -48,66 +51,87 @@ namespace Sigma2AttackNet
                 .WithParsed(o =>
                 {
                     LoadConfig(o);
-                    LoadMismatchSearchMatrix(o);
-                    foreach (var ruleFilePath in Directory.EnumerateFiles(o.RulesDirectory, "*.yml", SearchOption.AllDirectories))
+                    if (!o.Suricata)
                     {
-                        try
+                        LoadMismatchSearchMatrix(o);
+                        foreach (var ruleFilePath in Directory.EnumerateFiles(o.RulesDirectory, "*.yml", SearchOption.AllDirectories))
                         {
-                            var dict = DeserializeYamlFile(ruleFilePath, o);
-                            if (dict != null && dict.ContainsKey("tags"))
+                            try
                             {
-                                ruleCount++;
-                                var tags = dict["tags"];
-                                var categories = new List<string>();
-                                string lastEntry = null;
-                                foreach (string tag in tags)
+                                var dict = DeserializeYamlFile(ruleFilePath, o);
+                                if (dict != null && dict.ContainsKey("tags"))
                                 {
-                                    //If its the technique id entry, then this adds the file name to the techniques map
-                                    if (tag.ToLower().StartsWith("attack.t"))
+                                    ruleCount++;
+                                    var tags = dict["tags"];
+                                    var categories = new List<string>();
+                                    string lastEntry = null;
+                                    foreach (string tag in tags)
                                     {
-                                        var techniqueId = tag.Replace("attack.", "").ToUpper();
-                                        if (!techniques.ContainsKey(techniqueId))
-                                            techniques[techniqueId] = new List<string>();
-                                        techniques[techniqueId].Add(ruleFilePath.Split("\\").Last());
-                                        if (techniques.Count > gradientMax)
-                                            gradientMax = techniques.Count;
-                                        //then if there are any categories so far, it checks for a mismatch for each one
-                                        if (categories.Count > 0 && o.Warning)
+                                        //If its the technique id entry, then this adds the file name to the techniques map
+                                        if (tag.ToLower().StartsWith("attack.t"))
                                         {
-                                            foreach(string category in categories)
-                                                if (!(mismatchSearchMatrix.ContainsKey(techniqueId) && mismatchSearchMatrix[techniqueId].Contains(category)))
-                                                    mismatchWarnings.Add($"MITRE ATT&CK technique ({techniqueId}) and tactic ({category}) mismatch in rule: {ruleFilePath.Split("\\").Last()}");
+                                            var techniqueId = tag.Replace("attack.", "").ToUpper();
+                                            if (!techniques.ContainsKey(techniqueId))
+                                                techniques[techniqueId] = new List<string>();
+                                            techniques[techniqueId].Add(ruleFilePath.Split("\\").Last());
+                                            if (techniques.Count > gradientMax)
+                                                gradientMax = techniques.Count;
+                                            //then if there are any categories so far, it checks for a mismatch for each one
+                                            if (categories.Count > 0 && o.Warning)
+                                            {
+                                                foreach (string category in categories)
+                                                    if (!(mismatchSearchMatrix.ContainsKey(techniqueId) && mismatchSearchMatrix[techniqueId].Contains(category)))
+                                                        mismatchWarnings.Add($"MITRE ATT&CK technique ({techniqueId}) and tactic ({category}) mismatch in rule: {ruleFilePath.Split("\\").Last()}");
+                                            }
                                         }
+                                        else
+                                        {
+                                            //if its the start of a new technique block, then clean categories and adds first category
+                                            if (lastEntry == null || lastEntry.StartsWith("attack.t"))
+                                                categories = new List<string>();
+                                            categories.Add(
+                                                tag.Replace("attack.", "")
+                                                .Replace("_", "-")
+                                                .ToLower());
+                                        }
+                                        lastEntry = tag;
                                     }
-                                    else
-                                    {
-                                        //if its the start of a new technique block, then clean categories and adds first category
-                                        if (lastEntry == null || lastEntry.StartsWith("attack.t"))
-                                            categories = new List<string>();
-                                        categories.Add(
-                                            tag.Replace("attack.", "")
-                                            .Replace("_", "-")
-                                            .ToLower());
-                                    }
-                                    lastEntry = tag;
                                 }
                             }
+                            catch (YamlException e)
+                            {
+                                Console.Error.WriteLine($"Ignoring rule {ruleFilePath} (parsing failed)");
+                            }
                         }
-                        catch (YamlException e)
-                        {
-                            Console.Error.WriteLine($"Ignoring rule {ruleFilePath} (parsing failed)");
-                        }
+                        var entries = techniques
+                            .ToList()
+                            .Select(entry => new
+                            {
+                                techniqueID = entry.Key,
+                                score = entry.Value.Count,
+                                comment = (o.NoComment) ? null : string.Join(Environment.NewLine, entry.Value.Select(x => x.Split("/").Last()))
+                            });
+                        WriteSigmaFileResult(o, gradientMax, ruleCount, entries);
+                        PrintWarnings();
                     }
-                    var entries = techniques
-                        .ToList()
-                        .Select(entry => new
+                    else
+                    {
+
+                        List<Dictionary<string, List<string>>> res = new List<Dictionary<string, List<string>>>();
+
+                        foreach (var ruleFilePath in Directory.EnumerateFiles(o.RulesDirectory, "*.rules", SearchOption.AllDirectories))
                         {
-                            techniqueID = entry.Key,
-                            score = entry.Value.Count,
-                            comment = (o.NoComment) ? null : string.Join(Environment.NewLine, entry.Value.Select(x => x.Split("/").Last()))
-                        });
-                    WriteToFile(o, gradientMax, ruleCount, entries);
-                    PrintWarnings();
+                            res.Add(ParseRuleFile(ruleFilePath));
+                        }
+
+                        WriteSuricataFileResult(o,
+                            res
+                                .SelectMany(dict => dict)
+                                .ToLookup(pair => pair.Key, pair => pair.Value)
+                                .ToDictionary(group => group.Key,
+                                              group => group.SelectMany(list => list).ToList()));
+                    }
+                                        
                 });
         }
         /// <summary>
@@ -166,18 +190,18 @@ namespace Sigma2AttackNet
             mismatchWarnings.ForEach(Console.WriteLine);
         }
         /// <summary>
-        /// Writes entries to file
+        /// Writes sigma entries tag mappings to file
         /// </summary>
         /// <param name="o"></param>
         /// <param name="gradientMax"></param>
         /// <param name="ruleCount"></param>
         /// <param name="entries"></param>
-        public static void WriteToFile(Options o, int gradientMax, int ruleCount, IEnumerable<dynamic> entries)
+        public static void WriteSigmaFileResult(Options o, int gradientMax, int ruleCount, IEnumerable<dynamic> entries)
         {
             try
             {
-
-                File.WriteAllText(o.OutFile.EndsWith(".json") ? o.OutFile : $"{o.OutFile}.json", JsonConvert.SerializeObject(new
+                string filename = o.OutFile.EndsWith(".json") ? "sigma-coverage.json" : $"{o.OutFile}.json";
+                File.WriteAllText(filename, JsonConvert.SerializeObject(new
                 {
                     domain = "mitre-enterprise",
                     name = "Sigma rules coverage",
@@ -193,9 +217,32 @@ namespace Sigma2AttackNet
                 {
                     NullValueHandling = NullValueHandling.Ignore
                 }));
-                Console.WriteLine($"[*] Layer file written in {o.OutFile} ({ruleCount} rules)");
+                Console.WriteLine($"[*] Layer file written in {filename} ({ruleCount} rules)");
             }
             catch(Exception e)
+            {
+                Console.WriteLine("Problem writing to file: " + e.Message);
+            }
+        }
+        /// <summary>
+        /// Writes suricata result entries mappings to file
+        /// </summary>
+        /// <param name="o"></param>
+        /// <param name="gradientMax"></param>
+        /// <param name="ruleCount"></param>
+        /// <param name="entries"></param>
+        public static void WriteSuricataFileResult(Options o, dynamic entries)
+        {
+            try
+            {
+                string filename = o.OutFile.EndsWith(".json") ? "suricata-sigma-coverage.json" : $"{o.OutFile}.json";
+                File.WriteAllText(filename, JsonConvert.SerializeObject(entries, Formatting.Indented, new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore
+                }));
+                Console.WriteLine($"[*] Layer file written in {filename} ({entries.Count} rules)");
+            }
+            catch (Exception e)
             {
                 Console.WriteLine("Problem writing to file: " + e.Message);
             }
@@ -218,6 +265,38 @@ namespace Sigma2AttackNet
             var deserializer = new YamlDotNet.Serialization.Deserializer();
             var dict = deserializer.Deserialize<Dictionary<string, dynamic>>(contents);
             return dict;
+        }
+        /// <summary>
+        /// for a given file, searches for lines containing both a msg and a mitre_technique_id, whenever a pair is found, it's added to the result
+        /// </summary>
+        /// <param name="ruleFilePath"></param>
+        /// <returns></returns>
+        public static Dictionary<string, List<string>> ParseRuleFile(string ruleFilePath)
+        {
+            Dictionary<string, List<string>> res = new Dictionary<string, List<string>>();
+            var contents = new StringReader(File.ReadAllText(ruleFilePath));
+            string line = contents.ReadLine();
+            while (line != null)
+            {
+                if (line.Contains("mitre_technique_id "))
+                {
+                    int head = line.IndexOf("mitre_technique_id ") + "mitre_technique_id ".Length;
+                    int tail = line.IndexOf(",", head);
+                    string technique = line.Substring(head, tail - head);
+                    head = line.IndexOf("msg:\"") + "msg:\"".Length;
+                    tail = line.IndexOf("\"", head);
+                    string msg = line.Substring(head, tail - head);
+                    head = line.IndexOf("sid:") + "sid:".Length;
+                    tail = line.IndexOf(";", head);
+                    string sid = line.Substring(head, tail - head);
+                    if (res.ContainsKey(technique))
+                        res[technique].Add($"{sid} - {msg}");
+                    else
+                        res.Add(technique, new List<string>{ $"{sid} - {msg}"});
+                }
+                line = contents.ReadLine();
+            }
+            return res;
         }
     }
 }
