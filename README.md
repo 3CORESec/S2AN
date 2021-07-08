@@ -42,7 +42,7 @@ The pre-compiled binaries are available for download and you can reference them 
 
 * Generate Navigator layer: `./S2AN -d folder_with_sigma_rules/`
 * Generate Navigator layer and identify mismatch: `./S2AN -d folder_with_sigma_rules/ -w`
-* Generate Navigator layer from Suricata signatures: `./S2AN -s folder_with_signatures/` 
+* Generate Navigator layer from Suricata signatures: `./S2AN -s -d folder_with_signatures/` 
 
 ## Tactic & Technique mismatch
 
