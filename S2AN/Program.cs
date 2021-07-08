@@ -4,19 +4,20 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using CommandLine;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using YamlDotNet.Core;
 using Parser = CommandLine.Parser;
 
-namespace Sigma2AttackNet
+namespace S2AN
 {
     public class Program
     {
         public class Options
         {
-            [Option('c',"category-url", Required = false, HelpText = "URL with MITRE matrix")]
+            [Option('c', "category-url", Required = false, HelpText = "URL with MITRE matrix")]
             public string MitreMatrix { get; set; }
             [Option('d', "rules-directory", Required = true, HelpText = "Directory to read rules from")]
             public string RulesDirectory { get; set; }
@@ -44,7 +45,7 @@ namespace Sigma2AttackNet
         /// <param name="args"></param>
         public static void Main(string[] args)
         {
-            
+
             int ruleCount = 0;
             int gradientMax = 0;
             Parser.Default.ParseArguments<Options>(args)
@@ -124,7 +125,7 @@ namespace Sigma2AttackNet
                                 .ToDictionary(group => group.Key,
                                               group => group.SelectMany(list => list).ToList()));
                     }
-                                        
+
                 });
         }
         /// <summary>
@@ -135,7 +136,7 @@ namespace Sigma2AttackNet
         {
             //Write all the blah blah
             var assembly = Assembly.GetExecutingAssembly();
-            var resourceStream = assembly.GetManifestResourceStream("Sigma2AttackNet.config.json");
+            var resourceStream = assembly.GetManifestResourceStream("S2AN.config.json");
             StreamReader reader = new StreamReader(resourceStream);
             var config = JsonConvert.DeserializeObject<JObject>(reader.ReadToEnd());
             Console.WriteLine($"\n S2AN by 3CORESec - {config["repo_url"]}\n");
@@ -189,7 +190,7 @@ namespace Sigma2AttackNet
         /// <param name="gradientMax"></param>
         /// <param name="ruleCount"></param>
         /// <param name="entries"></param>
-        public static void WriteSigmaFileResult(Options o, int gradientMax, int ruleCount, Dictionary<string,List<string>> techniques)
+        public static void WriteSigmaFileResult(Options o, int gradientMax, int ruleCount, Dictionary<string, List<string>> techniques)
         {
             try
             {
@@ -221,7 +222,7 @@ namespace Sigma2AttackNet
                 }));
                 Console.WriteLine($"[*] Layer file written in {filename} ({ruleCount} rules)");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine("Problem writing to file: " + e.Message);
             }
@@ -301,27 +302,43 @@ namespace Sigma2AttackNet
             Dictionary<string, List<string>> res = new Dictionary<string, List<string>>();
             var contents = new StringReader(File.ReadAllText(ruleFilePath));
             string line = contents.ReadLine();
-            while (line != null)
-            {
-                if (line.Contains("mitre_technique_id "))
+                while (line != null)
                 {
-                    int head = line.IndexOf("mitre_technique_id ") + "mitre_technique_id ".Length;
-                    int tail = line.IndexOf(",", head);
-                    string technique = line.Substring(head, tail - head);
-                    head = line.IndexOf("msg:\"") + "msg:\"".Length;
-                    tail = line.IndexOf("\"", head);
-                    string msg = line.Substring(head, tail - head);
-                    head = line.IndexOf("sid:") + "sid:".Length;
-                    tail = line.IndexOf(";", head);
-                    string sid = line.Substring(head, tail - head);
-                    if (res.ContainsKey(technique))
-                        res[technique].Add($"{sid} - {msg}");
-                    else
-                        res.Add(technique, new List<string>{ $"{sid} - {msg}"});
+                    try
+                    {
+                        //if the line contains a mitre_technique
+                        if (line.Contains("mitre_technique_id "))
+                        {
+                            List<string> techniques = new List<string>();
+                            //get all indexes from all technique ids and add them all to a list
+                            IEnumerable<int> indexes = Regex.Matches(line, "mitre_technique_id ").Cast<Match>().Select(m => m.Index + "mitre_technique_id ".Length);
+                            foreach (int index in indexes) 
+                                techniques.Add(line.Substring(index, line.IndexOfAny(new [] { ',', ';' }, index) - index));
+                            int head = line.IndexOf("msg:\"") + "msg:\"".Length;
+                            int tail = line.IndexOf("\"", head);
+                            string msg = line.Substring(head, tail - head);
+                            head = line.IndexOf("sid:") + "sid:".Length;
+                            tail = line.IndexOfAny(new char[] { ',', ';' }, head);
+                            string sid = line.Substring(head, tail - head);
+                            //for each found technique add the sid along with the message to the content
+                            foreach( string technique in techniques)
+                            {
+                                if (res.ContainsKey(technique))
+                                    res[technique].Add($"{sid} - {msg}");
+                                else
+                                    res.Add(technique, new List<string> { $"{sid} - {msg}" });
+                            }
+                        }
+                        line = contents.ReadLine();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(line);
+                        Console.WriteLine(e.Message);
+                        line = contents.ReadLine();
                 }
-                line = contents.ReadLine();
+                }
+                return res;
             }
-            return res;
         }
     }
-}

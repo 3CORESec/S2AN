@@ -17,9 +17,9 @@ jobs:
     - name: Build and Publish binaries
       run: dotnet build -c Release 
     - name: Publish Windows
-      run: dotnet publish Sigma2AttackNet.sln -r win-x64 -c Release -o ./publish/windows  --self-contained true  -p:PublishSingleFile=true
+      run: dotnet publish S2AN.sln -r win-x64 -c Release -o ./publish/windows  --self-contained true  -p:PublishSingleFile=true
     - name: Publish Linux  
-      run: dotnet publish Sigma2AttackNet.sln -r linux-x64 -c Release -o ./publish/linux  --self-contained true  -p:PublishSingleFile=true    
+      run: dotnet publish S2AN.sln -r linux-x64 -c Release -o ./publish/linux  --self-contained true  -p:PublishSingleFile=true    
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
