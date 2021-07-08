@@ -17,7 +17,7 @@ Some of S2AN features are based on a [similar tool](https://github.com/Neo23x0/s
 ## Example output
 
 ```
-$ ./Sigma2AttackNet -d rules/ -w
+$ ./S2AN -d rules/ -w
  
 S2AN by 3CORESec - https://github.com/3CORESec/S2AN
  
@@ -38,11 +38,11 @@ The pre-compiled binaries are available for download and you can reference them 
 * GNU/Linux: https://s2an.3coresec.net/linux/S2AN 
 * Windows: https://s2an.3coresec.net/windows/S2AN.exe
 
-# Running Sigma2AttackNet
+# Running S2AN
 
-* Generate Navigator layer: `./Sigma2AttackNet -d folder_with_sigma_rules/`
-* Generate Navigator layer and identify mismatch: `./Sigma2AttackNet -d folder_with_sigma_rules/ -w`
-* Generate Navigator layer from Suricata signatures: `./Sigma2AttackNet -s folder_with_signatures/` 
+* Generate Navigator layer: `./S2AN -d folder_with_sigma_rules/`
+* Generate Navigator layer and identify mismatch: `./S2AN -d folder_with_sigma_rules/ -w`
+* Generate Navigator layer from Suricata signatures: `./S2AN -s folder_with_signatures/` 
 
 ## Tactic & Technique mismatch
 
