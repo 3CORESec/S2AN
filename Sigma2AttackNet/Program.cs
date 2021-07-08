@@ -103,15 +103,8 @@ namespace Sigma2AttackNet
                                 Console.Error.WriteLine($"Ignoring rule {ruleFilePath} (parsing failed)");
                             }
                         }
-                        var entries = techniques
-                            .ToList()
-                            .Select(entry => new
-                            {
-                                techniqueID = entry.Key,
-                                score = entry.Value.Count,
-                                comment = (o.NoComment) ? null : string.Join(Environment.NewLine, entry.Value.Select(x => x.Split("/").Last()))
-                            });
-                        WriteSigmaFileResult(o, gradientMax, ruleCount, entries);
+
+                        WriteSigmaFileResult(o, gradientMax, ruleCount, techniques);
                         PrintWarnings();
                     }
                     else
@@ -196,10 +189,19 @@ namespace Sigma2AttackNet
         /// <param name="gradientMax"></param>
         /// <param name="ruleCount"></param>
         /// <param name="entries"></param>
-        public static void WriteSigmaFileResult(Options o, int gradientMax, int ruleCount, IEnumerable<dynamic> entries)
+        public static void WriteSigmaFileResult(Options o, int gradientMax, int ruleCount, Dictionary<string,List<string>> techniques)
         {
             try
             {
+                var entries = techniques
+                    .ToList()
+                    .Select(entry => new
+                    {
+                        techniqueID = entry.Key,
+                        score = entry.Value.Count,
+                        comment = (o.NoComment) ? null : string.Join(Environment.NewLine, entry.Value.Select(x => x.Split("/").Last()))
+                    });
+
                 string filename = o.OutFile.EndsWith(".json") ? "sigma-coverage.json" : $"{o.OutFile}.json";
                 File.WriteAllText(filename, JsonConvert.SerializeObject(new
                 {
@@ -211,7 +213,7 @@ namespace Sigma2AttackNet
                         maxValue = gradientMax,
                         minValue = 0
                     },
-                    version = "4.1",
+                    version = "4.2",
                     techniques = entries
                 }, Formatting.Indented, new JsonSerializerSettings
                 {
@@ -231,23 +233,46 @@ namespace Sigma2AttackNet
         /// <param name="gradientMax"></param>
         /// <param name="ruleCount"></param>
         /// <param name="entries"></param>
-        public static void WriteSuricataFileResult(Options o, dynamic entries)
+        public static void WriteSuricataFileResult(Options o, Dictionary<string, List<string>> techniques)
         {
             try
             {
-                string filename = o.OutFile.EndsWith(".json") ? "suricata-sigma-coverage.json" : $"{o.OutFile}.json";
-                File.WriteAllText(filename, JsonConvert.SerializeObject(entries, Formatting.Indented, new JsonSerializerSettings
+
+                var entries = techniques
+                    .ToList()
+                    .Select(entry => new
+                    {
+                        techniqueID = entry.Key,
+                        score = entry.Value.Count,
+                        comment = (o.NoComment) ? null : string.Join(Environment.NewLine, entry.Value.Select(x => x.Split("/").Last()))
+                    });
+
+                string filename = o.OutFile.EndsWith(".json") ? "suricata-coverage.json" : $"{o.OutFile}.json";
+                File.WriteAllText(filename, JsonConvert.SerializeObject(new
+                {
+                    domain = "mitre-enterprise",
+                    name = "Sigma rules coverage",
+                    gradient = new
+                    {
+                        colors = new[] { "#a0eab5", "#0f480f" },
+                        maxValue = techniques
+                            .Values
+                            .Max(x => x.Count),
+                        minValue = 0
+                    },
+                    version = "4.2",
+                    techniques = entries
+                }, Formatting.Indented, new JsonSerializerSettings
                 {
                     NullValueHandling = NullValueHandling.Ignore
                 }));
-                Console.WriteLine($"[*] Layer file written in {filename} ({entries.Count} rules)");
+                Console.WriteLine($"[*] Layer file written in {filename} ({entries.Count()} rules)");
             }
             catch (Exception e)
             {
                 Console.WriteLine("Problem writing to file: " + e.Message);
             }
         }
-
         public static Dictionary<string, dynamic> DeserializeYamlFile(string ruleFilePath, Options o)
         {
             var contents = File.ReadAllText(ruleFilePath);
