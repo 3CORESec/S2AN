@@ -206,7 +206,7 @@ namespace Sigma2AttackNet
                 File.WriteAllText(filename, JsonConvert.SerializeObject(new
                 {
                     domain = "mitre-enterprise",
-                    name = "Suricata signatures coverage",
+                    name = "Sigma signatures coverage",
                     gradient = new
                     {
                         colors = new[] { "#a0eab5", "#0f480f" },
@@ -251,7 +251,7 @@ namespace Sigma2AttackNet
                 File.WriteAllText(filename, JsonConvert.SerializeObject(new
                 {
                     domain = "mitre-enterprise",
-                    name = "Sigma rules coverage",
+                    name = "Suricata rules coverage",
                     gradient = new
                     {
                         colors = new[] { "#a0eab5", "#0f480f" },
