@@ -6,8 +6,8 @@
 S2AN is a standalone tool developed in .NET Core, available for both Linux and Windows (x64), meant to interact with a folder holding [Sigma](https://github.com/Neo23x0/sigma) rules as well as Suricata signatures. Currently the following features are supported:
 
 * Create an [ATT&CK Navigator](https://mitre-attack.github.io/attack-navigator/enterprise/) layer based on the techniques covered by:
-**  Sigma rules
-** Suricata signatures
+  *  Sigma rules
+  * Suricata signatures
 * Identify mismatches between tactics and techniques in the Sigma rule files, that could result from improper categorization or updates to the framework
 
 Our main motivation behind its development was to have a tool that we could reference in a CI/CD pipeline when running in a minimal build environment *(without having or wanting to install Python dependencies)*.
